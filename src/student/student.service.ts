@@ -26,6 +26,11 @@ export class StudentService {
   }
 
   async getStudents(): Promise<Student[]> {
-    return await this.studentRepository.find();
+    return this.studentRepository.find();
+  }
+
+  async getStudent(id: string): Promise<Student> {
+    // id without brackets will search for mongodb id instead
+    return this.studentRepository.findOne({ id });
   }
 }
