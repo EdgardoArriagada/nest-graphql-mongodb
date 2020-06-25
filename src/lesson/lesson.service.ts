@@ -11,9 +11,7 @@ export class LessonService {
     @InjectRepository(Lesson) private lessonRepository: Repository<Lesson>,
   ) {}
 
-  public async createLesson(
-    createLessonInput: CreateLessonInput,
-  ): Promise<Lesson> {
+  async createLesson(createLessonInput: CreateLessonInput): Promise<Lesson> {
     const { name, startDate, endDate } = createLessonInput;
     const lesson = this.lessonRepository.create({
       id: uuid(),
@@ -24,7 +22,12 @@ export class LessonService {
 
     return this.lessonRepository.save(lesson);
   }
-  public async getLesson(id: string): Promise<Lesson> {
+
+  async getLessons(): Promise<Lesson[]> {
+    return await this.lessonRepository.find();
+  }
+
+  async getLesson(id: string): Promise<Lesson> {
     // id without brackets will search for mongodb id instead
     return this.lessonRepository.findOne({ id });
   }
