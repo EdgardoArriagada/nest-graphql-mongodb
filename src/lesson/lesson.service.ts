@@ -20,4 +20,8 @@ export class LessonService {
 
     return this.lessonRepository.save(lesson);
   }
+  public async getLesson(id: string): Promise<Lesson> {
+    // id without brackets will search for mongodb id instead
+    return this.lessonRepository.findOne({ id });
+  }
 }
