@@ -19,8 +19,8 @@ export class StudentResolver {
     return this.studentService.createStudent(createStudentInput);
   }
 
-  //   @Query(returns => [StudentType])
-  //   lessons() {
-  //     return this.studentService.getLessons();
-  //   }
+  @Query(returns => [StudentType])
+  students() {
+    return this.studentService.getStudents();
+  }
 }
