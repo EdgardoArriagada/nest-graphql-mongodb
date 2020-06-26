@@ -33,4 +33,14 @@ export class StudentService {
     // id without brackets will search for mongodb id instead
     return this.studentRepository.findOne({ id });
   }
+
+  async getManyStudents(studentIds: string[] = []): Promise<Student[]> {
+    return this.studentRepository.find({
+      where: {
+        id: {
+          $in: studentIds,
+        },
+      },
+    });
+  }
 }
